@@ -457,6 +457,12 @@ yay -Y --devel --save
 
 ![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl4.png)
 
+### Parādu pievienotās ierīces un to instalētos draviverus:
+
+![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/driver1.png)
+![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/driver2.png)
+![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/driver3.png)
+
 ## Nobeigumā - īsi par maniem konfigurācijas failiem:
 Kā jebkuram sevi cienošam Arch lietotājam - es pavadu vairāk laika savu sistēmu konfigurējot nekā lietojot tāpēc mani konfigurācijas faili atrodas pastāvīgā modifikācijas stāvoklī un šeit ir aprakstītas tā patreizējās iterācijas ko lietoju šajā darbā.
 
