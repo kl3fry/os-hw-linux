@@ -1,0 +1,173 @@
+// -*- mode: jsonc -*-
+{
+    /*"layer": "top",*/
+    "height": 0,
+    "spacing": 0,
+    /*"mode": "dock",*/
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/special",
+        "hyprland/window"
+    ],
+    "modules-center": [
+    ],
+
+    "wlr/taskbar": {
+    "format": "{app_id}",
+    "on-click": "minimize-raise"
+    },
+    "hyprland/workspaces":{
+        "all-outputs": false
+    },
+    "hyprland/window":{
+    	"format": " | {title}",
+    	"separate-outputs": true,
+    },
+    "modules-right": [
+    	"privacy",
+        "battery",
+        "custom/media", 
+        "network",
+        "wireplumber",
+        "cpu",
+        "memory",
+        "temperature",
+        "keyboard-state",
+        "hyprland/language",
+        "clock"
+    ],
+
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "hyprland/language": {
+    	"format-en": "EN",
+    	"format-lv": "LV",
+    	"format-ru": "RU",
+	"format": "{}"
+    },
+    "hyprland/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "hyprland/workspaces": {
+	"show-special": true
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    
+    "privacy": {
+    	"icon-spacing": 8,
+	"icon-size": 14,
+	"transition-duration": 0,
+    	"modules":[
+    		{
+    			"type": "screenshare",
+    			"tooltip": true
+    		},
+    		{
+    			"type": "audio-in",
+    			"tooltip": true
+    		}
+    	]
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+    	"format": "{:%Y-%m-%d %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
+    "cpu": {
+    	"on-double-click": "alacritty --hold -T BTOP -e btop",
+        "format": "CPU: {usage}%",
+        "tooltip": false,
+        "states":{
+            "good": 0,
+            "warning": 70,
+            "critical": 90
+        },
+    },
+    "memory": {
+    	"on-double-click": "alacritty --hold -T BTOP -e btop",
+        "format": "RAM: {}%",
+        "states":{
+            "good": 0,
+            "warning": 60,
+            "critical": 90
+        },
+    },
+    "temperature": {
+        "format": "{}°C",
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon5/temp1_input",
+        "interval": 10,
+        "critical-threshold": 70,
+    },
+    "network": {
+    	//"on-click": "alacritty --hold -T cat2 -e cat /home/glorb/cat2",
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "WIFI: {essid}",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        //"tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "internet no worky (╥_╥)",
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "wireplumber": {
+    	"format": "VOL: {volume}%",
+    	"format-muted": "MUTED",
+    	"on-double-click": "alacritty --hold -e wpctl status",
+    	"scroll-step": 1.0,
+    	"tooltip": true,
+    	"tooltip-format": "{node_name}",
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+}
