@@ -1,0 +1,93 @@
+@define-color good #8a9a65;
+@define-color warning #b6b975;
+@define-color critical #b65d54;
+
+* {
+	border: none;
+	border-radius: 0px;
+        font-family: 'Jet Brains Mono Nerd Font';
+	font-size: 10px;
+	font-weight: bold;
+	min-height: 0px;
+	color: rgba(255,255,255, 1);
+	transition: none;
+	box-shadow: none;
+}
+window#waybar{
+	/*background: #3c383666*/
+	background: rgba(0, 0, 0, 0.85);
+}
+.modules-center{
+
+}
+.modules-right{
+	margin: 0px 15px;
+	min-width: 700px;
+}
+.modules-left{
+	min-width: 700px;
+}
+#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature, #language, #wireplumber{
+	margin: 0px 0px;
+	padding: 0px 0px 0px 10px;
+	border-radius: 0px;
+	min-width: 0px;
+	background-color: rgba(43, 48, 59, 0);
+}
+#network{
+}
+#window{
+    margin: 0px 0px;
+}
+#workspaces button{
+        min-width: 0px;
+        box-shadow: none;
+}
+#workspaces button.active{
+	background: rgba(255,255,255, 0.2);
+}
+button:hover{
+	background: rgba(255, 255, 255, 0.3);
+	box-shadow: none;
+}
+#privacy-item{
+	margin: 5px 0px;
+	padding: 0px 10px 0px 10px;
+	border-radius: 5px;
+	min-width: 10px;
+	background-color: @critical;
+}
+
+#cpu.good{
+	color: @good;
+}
+#cpu.warning{
+	color: @warning;
+}
+#cpu.critical{
+	color: @critical;
+}
+
+#temperature{
+    color: @good;
+}
+
+#temperature.critical{
+    color: @critical;
+}
+
+#memory.good{
+	/*color: rgba(162,196,201,255);*/
+	color: @good;
+}
+#memory.warning{
+	/*color: rgba(84,153,144,255);*/
+	color: @warning;
+}
+#memory.critical{
+	/*color: rgba(241,166,50,255);*/
+	color: @critical;
+}
+#wireplumber.muted{
+	color: @critical;
+}

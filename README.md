@@ -39,33 +39,33 @@
 
 - Arch Linux instalācijai videi izmantošu oficiālo `.iso` failu no oficiālās mājaslapas:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/archweb.png)
+![](img/archweb.png)
 
 ## Virtuālās mašīnas izveidošana un konfigurēšana
 
 - Ar VirtManager palīdzību izveidoju jaunu QEMU/KVM virtuālo mašīnu ar lejupielādēto `.iso` failu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman1.png)
+![](img/virtman1.png)
 
 - Izveidoju 128 GB lielu virtuālās mašīnas glabātuvi:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman2.png)
+![](img/virtman2.png)
 
 - Neaizmirstu nomainīt `Firmware` uz `UEFI`
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman3.png)
+![](img/virtman3.png)
 
 - Katram gadījumam uzlieku pareizu CPU topoloģiju:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman4.png)
+![](img/virtman4.png)
 
 - Viruālai mašīnai atvēlu 8 GB RAM:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman5.png)
+![](img/virtman5.png)
 
 - Pievienoju `evdev` ievadu lai viegli pārslēgt klavitatūru un peli starp **host** un **guest** sistēmām:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman6.png)
+![](img/virtman6.png)
 
 - Beidzot spiežu `Begin Installation` un sāku instalāciju.
 
@@ -73,17 +73,17 @@
 
 - Nedaudz pagaidu un instalācijas vide ir startējusi:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/intro.png)
+![](img/intro.png)
 
 - Pirmais ko izdaru - pārbaudu vai ir interneta savienojums:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/ping.png)
+![](img/ping.png)
 
 - Viss ir kārtībā un varu turpināt.
 
 - Nākamais ko darīšu - sadalīšu un sagatavošu viruālo disku instalācijai. Tam izmantošu `cfdisk`:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/part.png)
+![](img/part.png)
 
 - Izveidoju tādas sadaļas:
     - 1 GB boot
@@ -92,23 +92,23 @@
 
 - Saglabāju, un izeju:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/yes.png)
+![](img/yes.png)
 
 - Tālāk formatēju visas sadaļās:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/format.png)
+![](img/format.png)
 
 - Tagad pievienoju(mount) visas izveidotās sadaļas instalācijas vides `/mnt` direktorijā un "ieslēdzu" swap sadaļu (ne bez kļūdām 🥲):
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/mount.png)
+![](img/mount.png)
 
 - Ar `lsblk` pārliecinos ka viss ir pareizi:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/lsblk.png)
+![](img/lsblk.png)
 
 - Tagad ir laiks instalēt nepieciešamās pakotnes janajā failu sistēmā ar `pacstrap` komandu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/pacstrap3.png)
+![](img/pacstrap3.png)
 
 - Īsi par dažām no tām (Daudzi pēc archlinux.org/packages aprkasta):
     - `base` - Minimālā pakotne, lai definētu pamata Arch Linux instalāciju
@@ -123,7 +123,7 @@
 
 - Pēc nelielas gaidīšanas pakotnes ir instalētas un es varu turpināt:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/pacstrapfin.png)
+![](img/pacstrapfin.png)
 
 - Pirms darboties ar jauno sistēmu ir jāģenerē `fstab` fails, kas ir lietots lai noteiktu, kā diska nodalījumi jāpievieno failu sistēmā:
 
@@ -131,11 +131,11 @@
     - `genfstab -U /mnt` - ģenerē `fstab` failu `/mnt` direktorijai
     - `>> /mnt/etc/fstab` - ieraksta pirmās komadas rezultātu sekojošajā direktorijā
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/fstab.png)
+![](img/fstab.png)
 
 - Tagad ir jānomaina saknes direktorija uz jaunizveidoto sistēmu (`chroot`) ar `arch-chroot` komandu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/chroot.png)
+![](img/chroot.png)
 
 - Jaunajā sistēmā ir janorāda laika zona ar komandu `ln -sf /usr/zoneinfo/Europe/Riga /etc/localtime` kur:
     - `ln -s` veido simbolisko saitni no:
@@ -144,19 +144,19 @@
 - Un pārliecinos ka viss ir pareizi ar `date`:
 - Kā arī izpildu `hwclock --systohc`
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/date.png)
+![](img/date.png)
 
 - Tālāk instalēju lokalizācijas, atveru `/etc/locale.gen` ar `neovim` ur noņemu `#` no rindas ar `en_US.UTF-8 UTF-8`:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/locale.png)
+![](img/locale.png)
 
 - Un izmantoju `locale-gen`
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/locale-gen.png)
+![](img/locale-gen.png)
 
 - Tagad sistēmai ir jādod vārds (hostname) kas šajā gadījumā vienkārši būs "archbox". Tas būs jāieraksta `/etc/hostname` failā ar sekojošo komandu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hostname.png)
+![](img/hostname.png)
 
 - Pirms turpināsim - uzstādīsu root lietotājam parolu un izveidošu parasto lietotāju un tam arī iedošu paroli (ļoti grūtu no 3 cipariem):
 
@@ -167,15 +167,15 @@
     - `arvids_bakulis` - nosaka lietotāja nosaukumu (tas esmu es 😇)
     - `-U` - izveido lietotāja grupu ar tādu pašu vārdu kā lietotājam (ir noderīgs)
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/useradd.png)
+![](img/useradd.png)
 
 - Tagad jāveic dažas redakcijas lietotāju "noteikumos" `/etc/sudoers` failā, tam lietošu komandu `EDITOR=nvim visudo` kur `EDITOR=nvim` nosaka vides mainīgo `EDITOR` kā neovim redaktoru:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/visudo.png)
+![](img/visudo.png)
 
 - Noņemu komentāru no `%wheel ALL=(ALL:ALL) ALL` rindas un faila beigās pielieku `Defaults rootpw`. Tādā veidā es nosaku ka mans lietotājs varēs izmantot jebkuru komandu un izmantojot `sudo` komandu sistēma vienmēr prasīs `root` lietotāja paroli:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/visudoedit.png)
+![](img/visudoedit.png)
 
 - Saglabāju un izeju.
 
@@ -183,25 +183,25 @@
 
 - Lai instalētu GRUB `/boot` sadaļa ko agrāk izveidoju un izveidot tā konfigurācijas failu izmantošu sekojošās komandas:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/grub.png)
+![](img/grub.png)
 
 - Pirms pārstartēšanas ir vērts ieslēgt NetworkManager systemd servisu ar komandu `systemctl enable NetworkManager.service`:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/netman.png)
+![](img/netman.png)
 
 - Tagad var iet ārā no chroot vides ar `exit` komandu un pārstartēt virtuālo mašīnu jauninstalētajā Arch Linux sistēmā ar `reboot` komandu.
 
 - Pēc pārstartēšanas es redzu savu jauno un svaigo sistēmu 🎉🎊🥳:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/login.png)
+![](img/login.png)
 
 - Palika tikai ievadīt savu lietotājvārdu un paroli: 
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/loginin.png)
+![](img/loginin.png)
 
 - Sistēma ir instalēta bet pagaidām viss ko varam redzēt ir melns ekrāns ar tekstu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/neofetch1.png)
+![](img/neofetch1.png)
 
 - Lai dabūtu ierasto personālā datora vidi būs jāinstalē vēl dažas pakotnes ko darīšū nākamajā sadaļā.
 
@@ -225,23 +225,23 @@
 
 *Es izmantoju **Hyprland***.
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hyprland.jpg)
+![](img/hyprland.jpg)
 
 - Lai instalētu Hyprland savā svaigajā sistēmā man pietiks ar vienu komandu `sudo pacman -S hyprland`: 
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hyprlandinstal.png)
+![](img/hyprlandinstal.png)
 
 - Nedaudz pagaidu un viss ir gatavs:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hyprlandinstal1.png)
+![](img/hyprlandinstal1.png)
 
 - Pirmas turpināšu instalēšu termināļa emulātoru **Kitty** lai būtu ko lietot iekšā **Hyprland** vidē:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/kittyinstall.png)
+![](img/kittyinstall.png)
 
 - Var mēģināt startēt Hyprland izpildot `Hyprland` komandu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hypr1.png)
+![](img/hypr1.png)
 
 - Hyprland atveras veiksmīgi bet teksta vietā ir redzami tikai tukši kvadrāti. Lai to izlabot - instalēju `nerd-fonts` pakotni un mēģinu vēlreiz.
 - Bet pirms tam es pārstartēju virtuālo mašīnu un pieslēdzu tai GPU. Kā arī instalēju `grim` un `slurp` pakotnes lai es varētu ņem ekrānattēlus, lai kombinētu šos divus rīkus izmantošu savu nelielo Bash programmu kam nepiecišama arī `jq` un `wl-copy`.
@@ -249,13 +249,13 @@
 
 - Pēc pārstartēšanas redzu, ka tagad fonti strādā kā vajag:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hypr2.png)
+![](img/vm/hypr2.png)
 
 - Laiks nedaudz parediģēt Hyprland konfigurācijas failu kas atrodas `~/.config/hypr/hyprland.conf` :
     - Nomainu ekrāna mērogu labākai redzamībai
     - Nomainu `autogenerated` uz `0` lai nebūtu brīdinājumu
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hyprconf.png)
+![](img/vm/hyprconf.png)
 
 - Manā personīgā konfigurācijā ir daudz vairāk sīkāku izmaiņu un nianšu ko es tagad neskaršu, jo tas aizņemtu pārāk daudz laika un būtu nesaprātīgi, par tiem īsi pastāstīšu vēlāk šajā darbā. Tāpēc pagaidām vienkārši nokopēju to.
 
@@ -263,7 +263,7 @@
 
 - Pēc konfigurācijas failu kopēšanas un jauka fona uzstādīšanas (kam bīja vajadzīgs instalēt `swaybg` un pievienot Hyprland konfigurācijas failā `exec-onece = swaybg -o bg.jpg`) es redzu daudz jaukāku rezultātu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/rice1.png)
+![](img/vm/rice1.png)
 
 - Laiks konfigurēt klaviatūras valodas:
 
@@ -271,15 +271,15 @@
 
     - Kā arī pierakstu `kb_options = grp:rctl_toggle` lai noteiktu labo `CTRL` taustiņu valodas maiņai.
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/lang.png)
+![](img/vm/lang.png)
 
 - Tagad var izmēģināt rakstīšanu dažādās valodās 🤓 :
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/lignux.png)
+![](img/vm/lignux.png)
 
 - Vai kaut-kas ko pats uzrakstīju:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/lignux2.png)
+![](img/vm/lignux2.png)
 
 - Tagad var instalēt dažas noderīgas programmas:
 
@@ -290,7 +290,7 @@
     - **mpv** - atskaņotājs (instalēju vēlāk)
     - **Krita** - attēlu manipulācijas programma (instalēju vēlāk)
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/install1.png)
+![](img/vm/install1.png)
 
 - Kā otru pārlūk programmu instalēšu **Librewolf**. Bet pirms tam būs jāinstalē `yay` - ***AUR** pakotņu pārvaldnieku.
     ###### *AUR - Arch User Repository: https://aur.archlinux.org/
@@ -304,7 +304,7 @@ makepkg -si
 ```
 `git` un `base-devel` jau instalēju tāpēc pirmā komanda nav obligāta.
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/yay1.png)
+![](img/vm/yay1.png)
 
 - Sekojot Yay github lapas instrukcijai ir jāveic pirmās reizes iestatīšana: 
 
@@ -314,86 +314,86 @@ yay -Syu --devel
 yay -Y --devel --save
 ```
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/yay2.png)
+![](img/vm/yay2.png)
 
 - Tagad beidzot varu izmantot `yay -s librewolf-bin` lai instalēto otro interneta pārlūku (`-bin` lai nekompilētu visu pārlūku pašam):
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/wolfinstall.png)
+![](img/vm/wolfinstall.png)
 
 - Gribēju atvērt jauninstalētās programma un pārliecināties ka tās strādā bet nav ar ko atvērt!
 - Būs jāinstalē lietotņu palaidējs. Es izmantoju **Tofi**, tas ir piejams tika AUR repozitorijā tāpēc izmantoju Yay:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/tofiinstall.png)
+![](img/vm/tofiinstall.png)
 
 - Tas instalējās veiksmīgi, tomēr man nepatīk tā izsakts tāpēc atkal pārkopēšu savus konfigurācijas failus:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/tofiold.png)
+![](img/vm/tofiold.png)
 
 - Daudz labāk!
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/tofinew2.png)
+![](img/vm/tofinew2.png)
 
 - Pie viena instalēšu statusa joslu **Waybar** ar `sudo pacman -S waybar` un pievienošu `exec-once = waybar` savā **Hyprland** konfigurācijā kā arī pārkopēšu savus konfigurācijas failus arī tam:
 
 - "No kastes" **Waybar** konfigurācija un izskats:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/waybarfresh.png)
+![](img/vm/waybarfresh.png)
 
 - Mana konfigurācija:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/waybarnew.png)
+![](img/vm/waybarnew.png)
 
 - Kā arī instalēju **GCC** kompilātorus un **Python** interpretētāju ar `sudo pacman -S gcc python`, kuri protams jau bīja instalēti:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/proginstall.png)
+![](img/vm/proginstall.png)
 
 ### Tagad var pārbaudīt instalētās programmas:
 
 - **Thunderbird** un e-pasta saņemšana:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/bird.png)
+![](img/vm/bird.png)
 
 - **LibreOffice** un nedaudz teksta:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/office1.png)
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/office2.png)
+![](img/vm/office1.png)
+![](img/vm/office2.png)
 
 - **Chromium** pārlūks
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/chromium.png)
+![](img/vm/chromium.png)
 
 - **Librewolf** pārlūks:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/wolf.png)
+![](img/vm/wolf.png)
 
 - **mpv** atskaņotājs un froša varde:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/frogmpv.png)
+![](img/vm/frogmpv.png)
 
 - **Discord** komunikācijai:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/discord.png)
+![](img/vm/discord.png)
 
 - **Krita** darbam ar attēliem:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/krita.png)
+![](img/vm/krita.png)
 
 - Kā koda rediģēšanas programmu izmantoju **Neovim**, ko jau esmu instalējis. "no kastes" tā ir diezgan minimāla tāpēc es izmantoju tai daudzus plugin-us tāpēc kā arī citiem - pārkopēju savus konfigurācijas failus:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/nvim1.png)
+![](img/vm/nvim1.png)
 
 - Uzrakstu divas parastas programmas abās valodās:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/cpp.png)
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/python.png)
+![](img/vm/cpp.png)
+![](img/vm/python.png)
 
 - Nomainu krāsu shēmu no **jellybeans** uz **zenburned** ar `:colorscheme zenburned` komandu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/nvimtheme.png)
+![](img/vm/nvimtheme.png)
 
 - Katram gadījumam atjauninu visu sistēmu ar `yay` (var arī lietot `sudo pacman -Syu` bet tas strādās tikai ar pacman instalētām pakotnēm):
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/yayupd.png)
+![](img/vm/yayupd.png)
 
 ## Spēles instalācija un demonstrācija:
 
@@ -401,7 +401,7 @@ yay -Y --devel --save
 
 - Pirmais ko vajadzēs izdarīt - instalēt pašu **Steam**, to var izdarīt instalējot `steam` pakotni ar `sudo pacman -S steam` komandu:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamfail.png)
+![](img/vm/steamfail.png)
 
 - Mēģinu to izdarīt, bet man nekas nesanāk, kas liecina par to, ka es aizmirsu ieslēgt **multilib** repozitoriju atbalstu priekš **pacman**, tāpēc to izdarīšu tagad.
 
@@ -409,51 +409,51 @@ yay -Y --devel --save
 
 - Lai ieslēgtu **multilib** atbalstu ir jāatver `/etc/pacman.conf` fails redaktorā ar `root` privilēģijām un jānoņem `#` no sekojošām rindām:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/multilib.png)
+![](img/vm/multilib.png)
 
 - Pēc tam ir vienkārši jāizpilda `sudo pacman -Syu`:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/multilibsyu.png)
+![](img/vm/multilibsyu.png)
 
 - Šo segmentu rakstīju vēlāk nekā pārējo darbu, tāpēc ir uzkrājušies atjauninājumi kurus arī pie viena instalēju.
 
 - Mēģinu instalēt vēlreiz un tagad viss sanāk!
 - Kā **Vulkan** draiveri izvēlos `vulkan-radeon` jo tam ir labāka saderība:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamsucc.png)
+![](img/vm/steamsucc.png)
 
 - Tagad varu mēģināt vert vaļā **Steam**.
 - Nedaudz pagaidu un tas ir vaļā:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamsign.png)
+![](img/vm/steamsign.png)
 
 - Ienāku savā kontā un tagad varēšu lejupielādēt kādu spēli:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamin.png)
+![](img/vm/steamin.png)
 
 - Es izvēlos **"Half-Life"**, bet pirms instalēšanas ir iestatījumos jāieslēdz **Steam Play** lai varētu spēlēt Windows spēles:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamproton.png)
+![](img/vm/steamproton.png)
 
 - Pārstartēju **Steam** un tagad var instalēt:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamhl.png)
+![](img/vm/steamhl.png)
 
 - Nedaudz pagaidu un spēle ir instalēta, varu vērt vaļā:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl1.png)
+![](img/vm/hl1.png)
 
 - Izvēlos **"New Game"**:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl2.png)
+![](img/vm/hl2.png)
 
 - Izvēlos **"Training Room"** lai ātri parādīt, ka spēle strādā:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl3.png)
+![](img/vm/hl3.png)
 
 - Nedaudz paskraidu apkārt:
 
-![](https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl4.png)
+![](img/vm/hl4.png)
 
 ## Nobeigumā - īsi par maniem konfigurācijas failiem:
 Kā jebkuram sevi cienošam Arch lietotājam - es pavadu vairāk laika savu sistēmu konfigurējot nekā lietojot tāpēc mani konfigurācijas faili atrodas pastāvīgā modifikācijas stāvoklī un šeit ir aprakstītas tā patreizējās iterācijas ko lietoju šajā darbā.
@@ -467,7 +467,7 @@ Pilno failu saites:
 ### Hyprland
 Nav pilns fails, tikai interesantās un svarīgās lietas. 
 
-[Pilno failu varēs apskatīt šeit](https://github.com/kl3fry/os-hw-linux/blob/main/dots/hypr/hyprland.conf)
+Pilno failu varēs apskatīt šeit: https://pastebin.com/WdhCkzub
 
 - Monitoru konfigurācija. Nokomentēti, jo vajadzīgi tikai dažreiz.
 
@@ -674,7 +674,9 @@ vim.call('plug#end')
 
 ### Kitty termināļa konfiurācija:
 
-[Pilni faili](https://github.com/kl3fry/os-hw-linux/tree/main/dots/kitty)
+Pilns fails: https://pastebin.com/0kNHZyJ4
+
+Krāsas shēmas fails: https://pastebin.com/0DbyJXwf
 
 - Fonts un tā izmērs:
 ```
@@ -714,7 +716,7 @@ map ctrl+equal change_font_size all +2.0
 
 Mana konfigurācija ir balstītā no šīs: https://github.com/philj56/tofi/blob/master/themes/dmenu
 
-[Pilns fails](https://github.com/kl3fry/os-hw-linux/blob/main/dots/tofi/theme)
+Pilns fails: https://pastebin.com/q5iTdHtq
 
 - Norāda loga atrasšanās vietu un izmēru:
 ```
@@ -761,7 +763,9 @@ border-width = 0
 ### Waybar konfigurācija:
 
 Waybar tiek konfigurēts `.jsonc` un `.css` failos, kas arī ir diezgan gari, tāpēc atkal pastātīšu tikai par pašu svarīgāko.
-[Pilnus failus varēs apskatīties šeit](https://github.com/kl3fry/os-hw-linux/tree/main/dots/waybar)
+Pilnus failus varēs apskatīties šeit: 
+- Konfigurācija: https://pastebin.com/FpUyXwMb
+- Stili: https://pastebin.com/nF68ZWc6
 
 - Šeit tiek notiekti kādi moduļi tiks rādīti:
 

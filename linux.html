@@ -1,0 +1,1232 @@
+<style>
+/* CSS Source: https://github.com/markdowncss/splendor (with minor tweaks)*/
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+html {
+  font-size: 12px;
+}
+
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  line-height: 1.85;
+}
+
+p,
+.splendor-p {
+  font-size: 1rem;
+  margin-bottom: 1.3rem;
+}
+
+h1,
+.splendor-h1,
+h2,
+.splendor-h2,
+h3,
+.splendor-h3,
+h4,
+.splendor-h4 {
+  margin: 1.414rem 0 .5rem;
+  font-weight: inherit;
+  line-height: 1.42;
+}
+
+h1,
+.splendor-h1 {
+  margin-top: 0;
+  font-size: 3.998rem;
+}
+
+h2,
+.splendor-h2 {
+  font-size: 2.827rem;
+}
+
+h3,
+.splendor-h3 {
+  font-size: 1.999rem;
+}
+
+h4,
+.splendor-h4 {
+  font-size: 1.414rem;
+}
+
+h5,
+.splendor-h5 {
+  font-size: 1.121rem;
+}
+
+h6,
+.splendor-h6 {
+  font-size: .88rem;
+}
+
+small,
+.splendor-small {
+  font-size: .707em;
+}
+
+/* https://github.com/mrmrs/fluidity */
+
+img,
+canvas,
+iframe,
+video,
+svg,
+select,
+textarea {
+  max-width: 100%;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
+
+html {
+  font-size: 18px;
+  max-width: 100%;
+}
+
+body {
+  color: #444;
+  font-family: 'Merriweather', Georgia, serif;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
+
+p,
+*:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
+  margin: 1rem auto 1rem;
+  max-width: 66rem; /36/
+  padding: .25rem;
+}
+
+div {
+  width: 100%;
+}
+
+div img {
+  width: 100%;
+}
+
+blockquote p {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 1rem auto 1rem;
+  max-width: 48rem; /*48*/
+}
+
+li {
+  margin-left: 2rem;
+}
+
+/* Counteract the specificity of the gross *:not() chain. */
+
+h1 {
+  padding: 4rem 0 !important;
+}
+
+/*  === End gross hack */
+
+p {
+  color: #555;
+  height: auto;
+  line-height: 1.45;
+}
+
+pre,
+code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+pre {
+  background-color: #fafafa;
+  font-size: .8rem;
+  overflow-x: scroll;
+  padding: 1.125em;
+}
+
+a,
+a:visited {
+  color: #3498db;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #2980b9;
+}
+</style>
+
+<h1 id="gnulinux-instalācija">GNU/Linux instalācija</h1>
+<h5 id="autors-arvīds-bākulis">Autors: Arvīds Bākulis</h5>
+<h5 id="studenta-apliecības-nummurs-ab24166">Studenta apliecības
+nummurs: ab24166</h5>
+<h2 id="ievads">Ievads</h2>
+<p>Šajā darbā es instalēšu <strong>Arch Linux</strong> un konfigurēšu to
+līdzīgi tam, ko lietoju pats.</p>
+<h3 id="kāpēc-arch">Kāpēc Arch?</h3>
+<ul>
+<li>Arch ir brīnišķīgs <strong>GNU/Linux</strong> distributīvs, ko pats
+no dienas dienā lietoju visuos savos datoros.</li>
+<li>Instalējot (bez <strong>archinstall</strong>) un lietojot to,
+nāksies daudz uzzināt par to kā operētājsistēma īsti strādā “zem
+pārsega”.</li>
+<li>Tas māca lietojotāju pašam risināt problēmas, meklēt to risinājumus
+un visgalvenākais - lasīt dokumentāciju.</li>
+<li>Un pretī visam iepriekšminētajam tas sniedz plašas pielāgošanas
+iespējas un lietotāja brīvību.</li>
+</ul>
+<h3 id="sistēma-instalācijai">Sistēma instalācijai:</h3>
+<ul>
+<li>QEMU/KVM virtuālā mašīna ar libvirt un VirtManager frontend-u.
+<ul>
+<li>Virtuālai mašīnai tiks atvēlēta sava fiziskā grafikas karte
+<strong>RX 6700 XT</strong>*.</li>
+<li>Video kartei ir pieslēgts savs monitors tāpēc tāds būs ari virtuālai
+mašīnai.</li>
+<li>Perefērijas ierīces (pele, klaviatūra) virtuālai mašīnai pieslēgtas
+kā <strong>evdev</strong> ierīces lai tās viegli varētu pārslēgt starp
+<strong>host</strong>** un <strong>guest</strong>** sistēmām.</li>
+</ul></li>
+</ul>
+<h6
+id="vairāk-par-gpu-passthrough-httpswiki.archlinux.orgtitlepci_passthrough_via_ovmf-httpswiki.archlinux.orgtitleqemuguest_graphics_acceleration">*
+Vairāk par GPU passthrough:
+https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF
+https://wiki.archlinux.org/title/QEMU/Guest_graphics_acceleration</h6>
+<h6
+id="host---uz-tīriem-fiziskiem-dzelžiem-instalētā-sistēma-guest---virtuālā-mašīna">**
+host - uz tīriem, fiziskiem “dzelžiem” instalētā sistēma; guest -
+virtuālā mašīna</h6>
+<h3 id="par-instalāciju">Par instalāciju:</h3>
+<ul>
+<li>Instalēšu salīdzināmi parastu mūsdienu Arch instalāciju:
+<ul>
+<li>Ar <strong>Hyprland</strong> kā “grafisko vidi”, konfigurēsu
+to.</li>
+<li>Instalēšu vēl dažas programmas lai pilnviedotu lietotāja saskarni un
+konfigurēšu arī tās.</li>
+<li>Instalēšu pārējās uzdevumā prasītās programmas.</li>
+<li>Instalēšu kādu spēli (kas būs daudz vienkāršāk, jo virtuālai mašīnai
+ir atvēlēta sava fiziskā karte un nav jāmocās ar grafikas
+virtualizāciju)</li>
+</ul></li>
+<li>Lielākā daļa instalācijai nepiecišamo zināšanu un resursu ir
+atrodama/ņemta no wiki.archlinux.org</li>
+</ul>
+<h6
+id="sakot-godīgi-no-sākuma-gribēju-instalēt-ko-interesantāku-kā-gentoo-vai-vispār-linux-from-scratch-bet-kā-parasti---darbam-ķēros-pēdēja-minūtē-un-laika-pat-tīri-kompilācijai-nepietiktu-tādēļ-instalēju-to-ar-ko-pats-esmu-pazīstams-.">Sakot
+godīgi, no sākuma gribēju instalēt ko interesantāku kā
+<strong>Gentoo</strong> vai vispār <strong>Linux From Scratch</strong>,
+bet kā parasti - darbam ķēros pēdēja minūtē un laika pat tīri
+kompilācijai nepietiktu, tādēļ instalēju to, ar ko pats esmu pazīstams
+🙃.</h6>
+<h2 id="instalācijas-vides-iegūšana">Instalācijas vides iegūšana</h2>
+<ul>
+<li>Arch Linux instalācijai videi izmantošu oficiālo <code>.iso</code>
+failu no oficiālās mājaslapas:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/archweb.png" /></p>
+<h2 id="virtuālās-mašīnas-izveidošana-un-konfigurēšana">Virtuālās
+mašīnas izveidošana un konfigurēšana</h2>
+<ul>
+<li>Ar VirtManager palīdzību izveidoju jaunu QEMU/KVM virtuālo mašīnu ar
+lejupielādēto <code>.iso</code> failu:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman1.png" /></p>
+<ul>
+<li>Izveidoju 128 GB lielu virtuālās mašīnas glabātuvi:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman2.png" /></p>
+<ul>
+<li>Neaizmirstu nomainīt <code>Firmware</code> uz <code>UEFI</code></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman3.png" /></p>
+<ul>
+<li>Katram gadījumam uzlieku pareizu CPU topoloģiju:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman4.png" /></p>
+<ul>
+<li>Viruālai mašīnai atvēlu 8 GB RAM:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman5.png" /></p>
+<ul>
+<li>Pievienoju <code>evdev</code> ievadu lai viegli pārslēgt klavitatūru
+un peli starp <strong>host</strong> un <strong>guest</strong>
+sistēmām:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/virtman6.png" /></p>
+<ul>
+<li>Beidzot spiežu <code>Begin Installation</code> un sāku
+instalāciju.</li>
+</ul>
+<h2 id="instalācija">Instalācija</h2>
+<ul>
+<li>Nedaudz pagaidu un instalācijas vide ir startējusi:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/intro.png" /></p>
+<ul>
+<li>Pirmais ko izdaru - pārbaudu vai ir interneta savienojums:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/ping.png" /></p>
+<ul>
+<li><p>Viss ir kārtībā un varu turpināt.</p></li>
+<li><p>Nākamais ko darīšu - sadalīšu un sagatavošu viruālo disku
+instalācijai. Tam izmantošu <code>cfdisk</code>:</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/part.png" /></p>
+<ul>
+<li>Izveidoju tādas sadaļas:
+<ul>
+<li>1 GB boot</li>
+<li>8 GB swap</li>
+<li>pārējais - pārējam</li>
+</ul></li>
+<li>Saglabāju, un izeju:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/yes.png" /></p>
+<ul>
+<li>Tālāk formatēju visas sadaļās:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/format.png" /></p>
+<ul>
+<li>Tagad pievienoju(mount) visas izveidotās sadaļas instalācijas vides
+<code>/mnt</code> direktorijā un “ieslēdzu” swap sadaļu (ne bez kļūdām
+🥲):</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/mount.png" /></p>
+<ul>
+<li>Ar <code>lsblk</code> pārliecinos ka viss ir pareizi:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/lsblk.png" /></p>
+<ul>
+<li>Tagad ir laiks instalēt nepieciešamās pakotnes janajā failu sistēmā
+ar <code>pacstrap</code> komandu:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/pacstrap3.png" /></p>
+<ul>
+<li>Īsi par dažām no tām (Daudzi pēc archlinux.org/packages aprkasta):
+<ul>
+<li><code>base</code> - Minimālā pakotne, lai definētu pamata Arch Linux
+instalāciju</li>
+<li><code>linux</code> - pats Linux kodols</li>
+<li><code>linux-firmware</code> - Programmaparatūras faili priekš
+Linux</li>
+<li><code>base-devel</code> - Pamata rīki Arch Linux pakotņu
+izveidei</li>
+<li><code>git</code> - Versiju kontroles sistēma (būs vajadzīgs lai
+dabūtu failus no git repozitorijām)</li>
+<li><code>neovim</code> - failu redaktors</li>
+<li><code>networkmanager</code> - Tīkla savienojumu pārvaldnieks</li>
+<li><code>grub</code> - GNU GRand Unified Bootloader</li>
+<li><code>efibootmgr</code> - Lietotāja telpas programma, lai modificētu
+EFI sāknēšanas pārvaldnieku (vajadzīgs GRUB instalācijai)</li>
+</ul></li>
+<li>Pēc nelielas gaidīšanas pakotnes ir instalētas un es varu
+turpināt:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/pacstrapfin.png" /></p>
+<ul>
+<li><p>Pirms darboties ar jauno sistēmu ir jāģenerē <code>fstab</code>
+fails, kas ir lietots lai noteiktu, kā diska nodalījumi jāpievieno failu
+sistēmā:</p></li>
+<li><p>Tam lietošu <code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</code>
+komandu kur:</p>
+<ul>
+<li><code>genfstab -U /mnt</code> - ģenerē <code>fstab</code> failu
+<code>/mnt</code> direktorijai</li>
+<li><code>&gt;&gt; /mnt/etc/fstab</code> - ieraksta pirmās komadas
+rezultātu sekojošajā direktorijā</li>
+</ul></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/fstab.png" /></p>
+<ul>
+<li>Tagad ir jānomaina saknes direktorija uz jaunizveidoto sistēmu
+(<code>chroot</code>) ar <code>arch-chroot</code> komandu:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/chroot.png" /></p>
+<ul>
+<li>Jaunajā sistēmā ir janorāda laika zona ar komandu
+<code>ln -sf /usr/zoneinfo/Europe/Riga /etc/localtime</code> kur:
+<ul>
+<li><code>ln -s</code> veido simbolisko saitni no:
+<ul>
+<li><code>/usr/zoneinfo/Europe/Riga</code> (mana laika zona)</li>
+<li>uz <code>/etc/localtime</code></li>
+</ul></li>
+</ul></li>
+<li>Un pārliecinos ka viss ir pareizi ar <code>date</code>:</li>
+<li>Kā arī izpildu <code>hwclock --systohc</code></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/date.png" /></p>
+<ul>
+<li>Tālāk instalēju lokalizācijas, atveru <code>/etc/locale.gen</code>
+ar <code>neovim</code> ur noņemu <code>#</code> no rindas ar
+<code>en_US.UTF-8 UTF-8</code>:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/locale.png" /></p>
+<ul>
+<li>Un izmantoju <code>locale-gen</code></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/locale-gen.png" /></p>
+<ul>
+<li>Tagad sistēmai ir jādod vārds (hostname) kas šajā gadījumā vienkārši
+būs “archbox”. Tas būs jāieraksta <code>/etc/hostname</code> failā ar
+sekojošo komandu:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hostname.png" /></p>
+<ul>
+<li><p>Pirms turpināsim - uzstādīsu root lietotājam parolu un izveidošu
+parasto lietotāju un tam arī iedošu paroli (ļoti grūtu no 3
+cipariem):</p></li>
+<li><p>Izveidoju savu lietotāju ar
+<code>useradd -G wheel -m -s /bin/bash arvids_bakulis -U</code> kur:</p>
+<ul>
+<li><code>-G wheel</code> pievieno jauno lietotāju <code>wheel</code>
+grupai kas kontrolē piekļuvi administratīvām privilēģijām.</li>
+<li><code>-m</code> - izveido “mājas” direktoriju lietotājam</li>
+<li><code>-s /bin/bash</code> - nosaka noklusējuma “čaulu” lietotājam
+(šajā gadījumā Bash)</li>
+<li><code>arvids_bakulis</code> - nosaka lietotāja nosaukumu (tas esmu
+es 😇)</li>
+<li><code>-U</code> - izveido lietotāja grupu ar tādu pašu vārdu kā
+lietotājam (ir noderīgs)</li>
+</ul></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/useradd.png" /></p>
+<ul>
+<li>Tagad jāveic dažas redakcijas lietotāju “noteikumos”
+<code>/etc/sudoers</code> failā, tam lietošu komandu
+<code>EDITOR=nvim visudo</code> kur <code>EDITOR=nvim</code> nosaka
+vides mainīgo <code>EDITOR</code> kā neovim redaktoru:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/visudo.png" /></p>
+<ul>
+<li>Noņemu komentāru no <code>%wheel ALL=(ALL:ALL) ALL</code> rindas un
+faila beigās pielieku <code>Defaults rootpw</code>. Tādā veidā es nosaku
+ka mans lietotājs varēs izmantot jebkuru komandu un izmantojot
+<code>sudo</code> komandu sistēma vienmēr prasīs <code>root</code>
+lietotāja paroli:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/visudoedit.png" /></p>
+<ul>
+<li>Saglabāju un izeju.</li>
+</ul>
+<h3 id="svarīga-daļa---bootloader-instalācija">Svarīga daļa - Bootloader
+instalācija:</h3>
+<ul>
+<li>Lai instalētu GRUB <code>/boot</code> sadaļa ko agrāk izveidoju un
+izveidot tā konfigurācijas failu izmantošu sekojošās komandas:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/grub.png" /></p>
+<ul>
+<li>Pirms pārstartēšanas ir vērts ieslēgt NetworkManager systemd servisu
+ar komandu <code>systemctl enable NetworkManager.service</code>:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/netman.png" /></p>
+<ul>
+<li><p>Tagad var iet ārā no chroot vides ar <code>exit</code> komandu un
+pārstartēt virtuālo mašīnu jauninstalētajā Arch Linux sistēmā ar
+<code>reboot</code> komandu.</p></li>
+<li><p>Pēc pārstartēšanas es redzu savu jauno un svaigo sistēmu
+🎉🎊🥳:</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/login.png" /></p>
+<ul>
+<li>Palika tikai ievadīt savu lietotājvārdu un paroli:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/loginin.png" /></p>
+<ul>
+<li>Sistēma ir instalēta bet pagaidām viss ko varam redzēt ir melns
+ekrāns ar tekstu:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/neofetch1.png" /></p>
+<ul>
+<li>Lai dabūtu ierasto personālā datora vidi būs jāinstalē vēl dažas
+pakotnes ko darīšū nākamajā sadaļā.</li>
+</ul>
+<h2
+id="sistēmas-konfigurēšana-un-nepieciešamo-programmu-instalēšana">Sistēmas
+konfigurēšana un nepieciešamo programmu instalēšana</h2>
+<ul>
+<li>Linux(un ne tikai) sistēmām ir piejamas daudz dažadas gatavas
+vizūālās lietotājvides (Desktop Enviroment). Piemēram: GNOME, KDE
+Plasma, Cinnamon, MATE, Xfce un citi.</li>
+</ul>
+<p><em>Bet mani tādi prasti risinājumi neinteresē</em> 😎.</p>
+<ul>
+<li><p>Es izmantošu savrupu logu pārvaldnieku (Window Manager) un
+kustēšos no tā punkta instalējot visu nepieciešamo pats.</p></li>
+<li><p>Mūsdienās ir piejami Logu Pārvaldnieki uz divu dažādu displeja
+servera protokolu “bāzēm”:</p>
+<ul>
+<li><p><strong>Xorg</strong> - Arhaisks, novecojis un vienkārši slikts
+🙃. Bet vēljoprojām ļoti populārs un plaši atbalstīts.</p></li>
+<li><p><strong>Wayland</strong> - Jauns, mūsdienīgs un kopumā labāks un
+strauji aug popularitātē, bet sava jaunuma dēļ dažos momentos vēl nav
+tik plaši atbalstīts.</p>
+<ul>
+<li>Wayland adoptēšanas progresu var skatīt šajā mājas lapā:
+https://arewewaylandyet.com/</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><em>Es izvēlos <strong>Wayland</strong></em>.</p>
+<ul>
+<li>Mūsdienās ir piejami daudz dažādi Wayland kompositori. Piemēram:
+Sway, River, dwl, labwc, Qtile un pēdējais, bet ne mazāk svarīgs -
+Hyprland.</li>
+</ul>
+<p><em>Es izmantoju <strong>Hyprland</strong></em>.</p>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hyprland.jpg" /></p>
+<ul>
+<li>Lai instalētu Hyprland savā svaigajā sistēmā man pietiks ar vienu
+komandu <code>sudo pacman -S hyprland</code>:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hyprlandinstal.png" /></p>
+<ul>
+<li>Nedaudz pagaidu un viss ir gatavs:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hyprlandinstal1.png" /></p>
+<ul>
+<li>Pirmas turpināšu instalēšu termināļa emulātoru
+<strong>Kitty</strong> lai būtu ko lietot iekšā
+<strong>Hyprland</strong> vidē:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/kittyinstall.png" /></p>
+<ul>
+<li>Var mēģināt startēt Hyprland izpildot <code>Hyprland</code>
+komandu:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/hypr1.png" /></p>
+<ul>
+<li><p>Hyprland atveras veiksmīgi bet teksta vietā ir redzami tikai
+tukši kvadrāti. Lai to izlabot - instalēju <code>nerd-fonts</code>
+pakotni un mēģinu vēlreiz.</p></li>
+<li><p>Bet pirms tam es pārstartēju virtuālo mašīnu un pieslēdzu tai
+GPU. Kā arī instalēju <code>grim</code> un <code>slurp</code> pakotnes
+lai es varētu ņem ekrānattēlus, lai kombinētu šos divus rīkus izmantošu
+savu nelielo Bash programmu kam nepiecišama arī <code>jq</code> un
+<code>wl-copy</code>.</p></li>
+<li><p>Kā arī instalēju <code>ranger</code> kā failu menedžeri.</p></li>
+<li><p>Pēc pārstartēšanas redzu, ka tagad fonti strādā kā
+vajag:</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hypr2.png" /></p>
+<ul>
+<li>Laiks nedaudz parediģēt Hyprland konfigurācijas failu kas atrodas
+<code>~/.config/hypr/hyprland.conf</code> :
+<ul>
+<li>Nomainu ekrāna mērogu labākai redzamībai</li>
+<li>Nomainu <code>autogenerated</code> uz <code>0</code> lai nebūtu
+brīdinājumu</li>
+</ul></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hyprconf.png" /></p>
+<ul>
+<li><p>Manā personīgā konfigurācijā ir daudz vairāk sīkāku izmaiņu un
+nianšu ko es tagad neskaršu, jo tas aizņemtu pārāk daudz laika un būtu
+nesaprātīgi, par tiem īsi pastāstīšu vēlāk šajā darbā. Tāpēc pagaidām
+vienkārši nokopēju to.</p></li>
+<li><p>Arī nokopēju <strong>Kitty</strong> konfigurācijas
+failus.</p></li>
+<li><p>Pēc konfigurācijas failu kopēšanas un jauka fona uzstādīšanas
+(kam bīja vajadzīgs instalēt <code>swaybg</code> un pievienot Hyprland
+konfigurācijas failā <code>exec-onece = swaybg -o bg.jpg</code>) es
+redzu daudz jaukāku rezultātu:</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/rice1.png" /></p>
+<ul>
+<li><p>Laiks konfigurēt klaviatūras valodas:</p>
+<ul>
+<li><p><code>input</code> sadaļā nomainu <code>kb_layout</code> uz
+<code>us, lv, ru</code> lai man būtu pieejamas Latviešu, Angļu un Krievu
+klaviatūra.</p></li>
+<li><p>Kā arī pierakstu <code>kb_options = grp:rctl_toggle</code> lai
+noteiktu labo <code>CTRL</code> taustiņu valodas maiņai.</p></li>
+</ul></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/lang.png" /></p>
+<ul>
+<li>Tagad var izmēģināt rakstīšanu dažādās valodās 🤓 :</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/lignux.png" /></p>
+<ul>
+<li>Vai kaut-kas ko pats uzrakstīju:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/lignux2.png" /></p>
+<ul>
+<li><p>Tagad var instalēt dažas noderīgas programmas:</p>
+<ul>
+<li><strong>LibreOffice</strong> - biroja programmatūras komplekts</li>
+<li><strong>Chromium</strong> - interneta pārlūks</li>
+<li><strong>Thunderbird</strong> - e-pasta klients</li>
+<li><strong>Discord</strong> - komunikācijas programma
+<strong>Zoom</strong> vietā</li>
+<li><strong>mpv</strong> - atskaņotājs (instalēju vēlāk)</li>
+<li><strong>Krita</strong> - attēlu manipulācijas programma (instalēju
+vēlāk)</li>
+</ul></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/install1.png" /></p>
+<ul>
+<li><p>Kā otru pārlūk programmu instalēšu <strong>Librewolf</strong>.
+Bet pirms tam būs jāinstalē <code>yay</code> - <em><strong>AUR</strong>
+pakotņu pārvaldnieku. ###### </em>AUR - Arch User Repository:
+https://aur.archlinux.org/</p></li>
+<li><p>Lai to izdarītu ir jāizpilda komandas no oficiālās github
+lapas:</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> <span class="at">--needed</span> git base-devel</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://aur.archlinux.org/yay-bin.git</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> yay-bin</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">makepkg</span> <span class="at">-si</span></span></code></pre></div>
+<p><code>git</code> un <code>base-devel</code> jau instalēju tāpēc pirmā
+komanda nav obligāta.</p>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/yay1.png" /></p>
+<ul>
+<li>Sekojot Yay github lapas instrukcijai ir jāveic pirmās reizes
+iestatīšana:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> <span class="at">-Y</span> <span class="at">--gendb</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> <span class="at">-Syu</span> <span class="at">--devel</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">yay</span> <span class="at">-Y</span> <span class="at">--devel</span> <span class="at">--save</span></span></code></pre></div>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/yay2.png" /></p>
+<ul>
+<li>Tagad beidzot varu izmantot <code>yay -s librewolf-bin</code> lai
+instalēto otro interneta pārlūku (<code>-bin</code> lai nekompilētu visu
+pārlūku pašam):</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/wolfinstall.png" /></p>
+<ul>
+<li>Gribēju atvērt jauninstalētās programma un pārliecināties ka tās
+strādā bet nav ar ko atvērt!</li>
+<li>Būs jāinstalē lietotņu palaidējs. Es izmantoju
+<strong>Tofi</strong>, tas ir piejams tika AUR repozitorijā tāpēc
+izmantoju Yay:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/tofiinstall.png" /></p>
+<ul>
+<li>Tas instalējās veiksmīgi, tomēr man nepatīk tā izsakts tāpēc atkal
+pārkopēšu savus konfigurācijas failus:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/tofiold.png" /></p>
+<ul>
+<li>Daudz labāk!</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/tofinew2.png" /></p>
+<ul>
+<li><p>Pie viena instalēšu statusa joslu <strong>Waybar</strong> ar
+<code>sudo pacman -S waybar</code> un pievienošu
+<code>exec-once = waybar</code> savā <strong>Hyprland</strong>
+konfigurācijā kā arī pārkopēšu savus konfigurācijas failus arī
+tam:</p></li>
+<li><p>“No kastes” <strong>Waybar</strong> konfigurācija un
+izskats:</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/waybarfresh.png" /></p>
+<ul>
+<li>Mana konfigurācija:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/waybarnew.png" /></p>
+<ul>
+<li>Kā arī instalēju <strong>GCC</strong> kompilātorus un
+<strong>Python</strong> interpretētāju ar
+<code>sudo pacman -S gcc python</code>, kuri protams jau bīja
+instalēti:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/proginstall.png" /></p>
+<h3 id="tagad-var-pārbaudīt-instalētās-programmas">Tagad var pārbaudīt
+instalētās programmas:</h3>
+<ul>
+<li><strong>Thunderbird</strong> un e-pasta saņemšana:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/bird.png" /></p>
+<ul>
+<li><strong>LibreOffice</strong> un nedaudz teksta:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/office1.png" />
+<img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/office2.png" /></p>
+<ul>
+<li><strong>Chromium</strong> pārlūks</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/chromium.png" /></p>
+<ul>
+<li><strong>Librewolf</strong> pārlūks:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/wolf.png" /></p>
+<ul>
+<li><strong>mpv</strong> atskaņotājs un froša varde:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/frogmpv.png" /></p>
+<ul>
+<li><strong>Discord</strong> komunikācijai:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/discord.png" /></p>
+<ul>
+<li><strong>Krita</strong> darbam ar attēliem:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/krita.png" /></p>
+<ul>
+<li>Kā koda rediģēšanas programmu izmantoju <strong>Neovim</strong>, ko
+jau esmu instalējis. “no kastes” tā ir diezgan minimāla tāpēc es
+izmantoju tai daudzus plugin-us tāpēc kā arī citiem - pārkopēju savus
+konfigurācijas failus:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/nvim1.png" /></p>
+<ul>
+<li>Uzrakstu divas parastas programmas abās valodās:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/cpp.png" />
+<img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/python.png" /></p>
+<ul>
+<li>Nomainu krāsu shēmu no <strong>jellybeans</strong> uz
+<strong>zenburned</strong> ar <code>:colorscheme zenburned</code>
+komandu:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/nvimtheme.png" /></p>
+<ul>
+<li>Katram gadījumam atjauninu visu sistēmu ar <code>yay</code> (var arī
+lietot <code>sudo pacman -Syu</code> bet tas strādās tikai ar pacman
+instalētām pakotnēm):</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/yayupd.png" /></p>
+<h2 id="spēles-instalācija-un-demonstrācija">Spēles instalācija un
+demonstrācija:</h2>
+<ul>
+<li><p>Es instalēšu kādu spēli no savas <strong>Steam</strong>
+bibliotēkas.</p></li>
+<li><p>Pirmais ko vajadzēs izdarīt - instalēt pašu
+<strong>Steam</strong>, to var izdarīt instalējot <code>steam</code>
+pakotni ar <code>sudo pacman -S steam</code> komandu:</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamfail.png" /></p>
+<ul>
+<li><p>Mēģinu to izdarīt, bet man nekas nesanāk, kas liecina par to, ka
+es aizmirsu ieslēgt <strong>multilib</strong> repozitoriju atbalstu
+priekš <strong>pacman</strong>, tāpēc to izdarīšu tagad.</p></li>
+<li><p><strong>multilib</strong> satur 32 bitu programmatūru un
+bibliotēkas, ko var izmantot, lai palaistu un izveidotu 32 bitu
+lietojumprogrammas 64 bitu instalācijās (piem., Wine, Steam
+utt.).</p></li>
+<li><p>Lai ieslēgtu <strong>multilib</strong> atbalstu ir jāatver
+<code>/etc/pacman.conf</code> fails redaktorā ar <code>root</code>
+privilēģijām un jānoņem <code>#</code> no sekojošām rindām:</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/multilib.png" /></p>
+<ul>
+<li>Pēc tam ir vienkārši jāizpilda <code>sudo pacman -Syu</code>:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/multilibsyu.png" /></p>
+<ul>
+<li><p>Šo segmentu rakstīju vēlāk nekā pārējo darbu, tāpēc ir
+uzkrājušies atjauninājumi kurus arī pie viena instalēju.</p></li>
+<li><p>Mēģinu instalēt vēlreiz un tagad viss sanāk!</p></li>
+<li><p>Kā <strong>Vulkan</strong> draiveri izvēlos
+<code>vulkan-radeon</code> jo tam ir labāka saderība:</p></li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamsucc.png" /></p>
+<ul>
+<li>Tagad varu mēģināt vert vaļā <strong>Steam</strong>.</li>
+<li>Nedaudz pagaidu un tas ir vaļā:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamsign.png" /></p>
+<ul>
+<li>Ienāku savā kontā un tagad varēšu lejupielādēt kādu spēli:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamin.png" /></p>
+<ul>
+<li>Es izvēlos <strong>“Half-Life”</strong>, bet pirms instalēšanas ir
+iestatījumos jāieslēdz <strong>Steam Play</strong> lai varētu spēlēt
+Windows spēles:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamproton.png" /></p>
+<ul>
+<li>Pārstartēju <strong>Steam</strong> un tagad var instalēt:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/steamhl.png" /></p>
+<ul>
+<li>Nedaudz pagaidu un spēle ir instalēta, varu vērt vaļā:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl1.png" /></p>
+<ul>
+<li>Izvēlos <strong>“New Game”</strong>:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl2.png" /></p>
+<ul>
+<li>Izvēlos <strong>“Training Room”</strong> lai ātri parādīt, ka spēle
+strādā:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl3.png" /></p>
+<ul>
+<li>Nedaudz paskraidu apkārt:</li>
+</ul>
+<p><img
+src="https://raw.githubusercontent.com/kl3fry/os-hw-linux/refs/heads/main/img/vm/hl4.png" /></p>
+<h2 id="nobeigumā---īsi-par-maniem-konfigurācijas-failiem">Nobeigumā -
+īsi par maniem konfigurācijas failiem:</h2>
+<p>Kā jebkuram sevi cienošam Arch lietotājam - es pavadu vairāk laika
+savu sistēmu konfigurējot nekā lietojot tāpēc mani konfigurācijas faili
+atrodas pastāvīgā modifikācijas stāvoklī un šeit ir aprakstītas tā
+patreizējās iterācijas ko lietoju šajā darbā.</p>
+<p>Šeit mēģināsu īsi pastātīt par svarīgākajiem momentiem.</p>
+<p>Bet ja interesē plašaka informācija - laipni lūgti attiecīgos
+repozitorijos un dokumentācijās:</p>
+<p>Pilno failu saites:</p>
+<h3 id="hyprland">Hyprland</h3>
+<p>Nav pilns fails, tikai interesantās un svarīgās lietas.</p>
+<p><a
+href="https://github.com/kl3fry/os-hw-linux/blob/main/dots/hypr/hyprland.conf">Pilno
+failu varēs apskatīt šeit</a></p>
+<ul>
+<li>Monitoru konfigurācija. Nokomentēti, jo vajadzīgi tikai
+dažreiz.</li>
+</ul>
+<pre><code>#monitor = eDP-1, 1920x1080@120, 0x1440, 1
+#monitor = eDP-1, 2880x1800@120, 0x1440, 2/
+#monitor = , 2560x1440@60, 0x0, 1
+
+#env = AQ_DRM_DEVICES,/dev/dri/card0 # Nosaka videokarti ko lietot
+#monitor = HDMI-A-1, 2560x1440, 0x0, 1</code></pre>
+<ul>
+<li>Šeit nosaku mainīgos ar programmām ko lietoju un izsaucu ar
+Hyprland</li>
+</ul>
+<pre><code>$terminal = kitty
+$fileManager = kitty ranger
+$menu = tofi-drun --drun-launch=true</code></pre>
+<ul>
+<li>Šeit tiek noteikas programmas kas izpildās atverot Hyprland</li>
+</ul>
+<pre><code>exec-once = waybar &amp; librewolf &amp; swaybg -i bg.jpg # Atveru statusa joslu, pārlūku un fona bildi
+exec-once = echo 40 &gt;&gt; /sys/class/backlight/amdgpu_bl1/brightness # Šeit pārslēdzu spilgtumu sava portatīvā datora ekrānam</code></pre>
+<ul>
+<li>Vides mainīgie:</li>
+</ul>
+<pre><code>env = XCURSOR_SIZE,24
+env = HYPRCURSOR_SIZE,32
+
+env = HYPRCURSOR_THEME, rose-pine-hypercursor # Nosaka kursoru kā Rose-Pine</code></pre>
+<ul>
+<li>Nedaudz izmainu noklusējuma izskatu:</li>
+</ul>
+<pre><code>general { 
+    gaps_in = 0 # Pēc noklusējuma izslēdzu tukšās malas
+    gaps_out = 0
+
+    border_size = 3 # Nosaku apmales resnumu
+
+    col.active_border = rgb(b65d54) # Aktīvā loga apmales ir sarkanas
+    col.inactive_border = rgba(00000050) # Neaktīvo - caurspīdīgs melns
+
+    resize_on_border = false 
+
+    allow_tearing = false
+
+    layout = dwindle
+}
+
+decoration {
+    rounding = 0 # Man nepatīk logu kaktu noapaļošana. Izslēdzu to.
+
+    active_opacity = 1.0
+    inactive_opacity = 1.0
+
+    #enabled = false # Izslēdzu logu ēnu 
+    #shadow_range = 4
+    #shadow_render_power = 3
+    #col.shadow = rgba(1a1a1aee)
+
+    dim_special = 0.4 # Speciālo darbavirsmu fona aptumšošna
+
+    blur {
+        enabled = true
+        size = 7
+        passes = 1
+        
+        vibrancy = 0.1696
+        special = false
+    }
+}
+
+# Ja uz darbavirsmas ir vairāk par 1 logu - tikai tad ieslēdz logu apmales
+workspace = w[1], border:false, gapsin:0, gapsout:0
+workspace = s[true], gapsout:35, gapsin:10</code></pre>
+<ul>
+<li>Animācijas ir ieslēgtas, stāv pēc nokluējuma, bet es tās padarīju
+nedaudz ātrākas</li>
+</ul>
+<pre><code>animations {
+    enabled = true 
+
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+
+    animation = windows, 1, 2, default
+    animation = windowsOut, 1, 2, default, popin 80%
+    animation = border, 1, 10, default
+    animation = borderangle, 1, 8, default
+    animation = fade, 1, 2, default
+    animation = workspaces, 1, 2, default
+}</code></pre>
+<ul>
+<li>Ievada konfigurācija, par to jau stāstiju:</li>
+</ul>
+<pre><code>input {
+    kb_layout = us, lv, ru
+    kb_options = grp:rctrl_toggle
+
+    # Nosaku taustiņu atkārtošanas ātrumu un biežumu kā ātrāku:
+    repeat_rate = 35
+    repeat_delay = 170
+
+    follow_mouse = 1
+
+    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+
+    touchpad {
+        natural_scroll = true
+        scroll_factor = 0.5
+    }
+}</code></pre>
+<ul>
+<li>Taustiņu kombināciju konfigurācija:</li>
+</ul>
+<pre><code>$mainMod = SUPER # Nosaku &quot;Windows&quot; pogu kā &quot;mainMod&quot;
+
+
+# Nosaku paroļu pārvaldniekam savu speciālo darbavirsmu:
+bind = $mainMod, K, togglespecialworkspace, 󰌆
+bind = $mainMod SHIFT, k, movetoworkspace, special:󰌆
+workspace = special:󰌆, on-created-empty: keepassxc
+
+# Pārslēdzu valodas ar z x a taustiņiem:
+$KEYB = at-translated-set-2-keyboard
+bind = $mainMod, z, exec, hyprctl switchxkblayout $KEYB 1 #en
+bind = $mainMod, x, exec, hyprctl switchxkblayout $KEYB 2 #ru
+bind = $mainMod, a, exec, hyprctl switchxkblayout $KEYB 3 #lv
+
+# Dažu jau minēto programmu pārstartēšanas kombinācijas:
+bind = $mainMod, b, exec, killall waybar &amp;&amp; waybar
+bind = $mainMod, n, exec, killall swaybg &amp;&amp; swaybg -i bg.jpg
+
+# Ekrānattēlu uzņemšanas taustiņi:
+bind = $mainMod, s, exec, glorbscreen -p
+bind = $mainMod SHIFT, s, exec, glorbscreen -pf</code></pre>
+<h3 id="neovim-konfigurācija">Neovim konfigurācija:</h3>
+<p>Mana Neovim konfigurācija ir ļoti haotiska un neglīta tāpēc es tikai
+norādīšu spraudņu sarakstu, ko lietoju:</p>
+<ul>
+<li>Kā plugin pārvaldnieku izmantoju <strong>Vim-Plug</strong>.
+<ul>
+<li>To var instālēt priekš <strong>Neovim</strong> ar sekojošo komandu:
+<ul>
+<li><code>sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'</code></li>
+</ul></li>
+</ul></li>
+<li>Pastāstīšu par dažiem no tiem (plašāk par tiem var atrast attiecīgās
+github.com repozitorijās):</li>
+</ul>
+<pre><code>local vim = vim
+local Plug = vim.fn[&#39;plug#&#39;]
+
+vim.call(&#39;plug#begin&#39;)
+Plug &#39;romgrk/barbar.nvim&#39; -- Cilņu josla (augšējā)
+Plug &#39;nvim-lualine/lualine.nvim&#39; -- Status josla (apakšējā)
+Plug &#39;nvim-tree/nvim-tree.lua&#39; -- Failu pārvaldnieks
+Plug &#39;nvim-tree/nvim-web-devicons&#39; 
+Plug &#39;lukas-reineke/indent-blankline.nvim&#39;
+Plug &#39;RRethy/vim-illuminate&#39;
+Plug &#39;nvim-treesitter/nvim-treesitter&#39;
+Plug &#39;nvim-telescope/telescope.nvim&#39;
+Plug &#39;nvim-lua/plenary.nvim&#39;
+Plug &#39;nvim-telescope/telescope-fzf-native.nvim&#39;
+-- Krāsu shēmas --
+Plug &#39;morhetz/gruvbox&#39;
+Plug &#39;nanotech/jellybeans.vim&#39;
+Plug &#39;rebelot/kanagawa.nvim&#39;
+Plug &#39;rafi/awesome-vim-colorschemes&#39;
+Plug &quot;zenbones-theme/zenbones.nvim&quot;
+Plug &quot;rktjmp/lush.nvim&quot;
+Plug &quot;ntk148v/komau.vim&quot;
+Plug &quot;ronisbr/nano-theme.nvim&quot;
+Plug &quot;keitanakamura/neodark.vim&quot;
+Plug &quot;vim-scripts/spacegray.vim&quot;
+Plug &quot;teloe/bland.vim&quot;
+Plug &quot;rayes0/blossom.vim&quot;
+-- Spraudņi LSP konfigurācijai un koda auto-pabeigšanai --
+Plug &#39;neovim/nvim-lspconfig&#39;
+Plug &#39;hrsh7th/cmp-nvim-lsp&#39;
+Plug &#39;hrsh7th/cmp-buffer&#39;
+Plug &#39;hrsh7th/cmp-path&#39;
+Plug &#39;hrsh7th/cmp-cmdline&#39;
+Plug &#39;hrsh7th/nvim-cmp&#39;
+Plug &#39;hrsh7th/cmp-vsnip&#39;
+Plug &#39;hrsh7th/vim-vsnip&#39;
+Plug &quot;williamboman/mason.nvim&quot;
+Plug &quot;williamboman/mason-lspconfig.nvim&quot;
+Plug &quot;elkowar/yuck.vim&quot;
+-- Markdown priekšskatījums --
+Plug &quot;toppair/peek.nvim&quot;
+
+vim.call(&#39;plug#end&#39;)</code></pre>
+<h3 id="kitty-termināļa-konfiurācija">Kitty termināļa konfiurācija:</h3>
+<p><a
+href="https://github.com/kl3fry/os-hw-linux/tree/main/dots/kitty">Pilni
+faili</a></p>
+<ul>
+<li>Fonts un tā izmērs:</li>
+</ul>
+<pre><code>font_size 16.0
+font_family JetBrainsMonoNL Nerd Font</code></pre>
+<ul>
+<li>Pielāgoju loga izmērus un paradumus:</li>
+</ul>
+<pre><code>remember_window_size no 
+initial_window_width 800
+initial_window_height 600
+window_padding_width 10
+window_border_width 0pt
+confirm_os_window_close 0</code></pre>
+<ul>
+<li>Nosaku fona caurspīgīgumu un importēju krāsu shēmas:</li>
+</ul>
+<pre><code>background_opacity 0.95
+include /home/arvids_bakulis/.config/kitty/Solarized_Darcula.conf</code></pre>
+<ul>
+<li>Izslēdzās kaitinošas skaņas:</li>
+</ul>
+<pre><code>enable_audio_bell no</code></pre>
+<ul>
+<li>Taustiņi burtu izmērā regulācijai:</li>
+</ul>
+<pre><code>map ctrl+minus change_font_size all -2.0
+map ctrl+equal change_font_size all +2.0</code></pre>
+<h3 id="tofi-konfigurācija">Tofi konfigurācija:</h3>
+<p>Mana konfigurācija ir balstītā no šīs:
+https://github.com/philj56/tofi/blob/master/themes/dmenu</p>
+<p><a
+href="https://github.com/kl3fry/os-hw-linux/blob/main/dots/tofi/theme">Pilns
+fails</a></p>
+<ul>
+<li>Norāda loga atrasšanās vietu un izmēru:</li>
+</ul>
+<pre><code>anchor = top
+width = 100%
+height = 20
+horizontal = true</code></pre>
+<ul>
+<li>Nosaka testu, fontu un tā izmēru:</li>
+</ul>
+<pre><code>prompt-text = &quot; run: &quot;
+font-size = 8
+font = JetBrainsMono Nerd Font Bold</code></pre>
+<ul>
+<li>Nosaka krāsas:</li>
+</ul>
+<pre><code>background-color = #000000
+selection-color = #8a9a65
+text-color = #f9fbff</code></pre>
+<ul>
+<li>Nosaka elementu izmērus iekšā logā:</li>
+</ul>
+<pre><code>min-input-width = 120
+result-spacing = 15</code></pre>
+<ul>
+<li>Noņem loga atstarpes un apmales:</li>
+</ul>
+<pre><code>padding-top = 0
+padding-bottom = 0
+padding-left = 0
+padding-right = 0
+outline-width = 0
+border-width = 0</code></pre>
+<h3 id="waybar-konfigurācija">Waybar konfigurācija:</h3>
+<p>Waybar tiek konfigurēts <code>.jsonc</code> un <code>.css</code>
+failos, kas arī ir diezgan gari, tāpēc atkal pastātīšu tikai par pašu
+svarīgāko. <a
+href="https://github.com/kl3fry/os-hw-linux/tree/main/dots/waybar">Pilnus
+failus varēs apskatīties šeit</a></p>
+<ul>
+<li>Šeit tiek notiekti kādi moduļi tiks rādīti:</li>
+</ul>
+<pre><code>&quot;modules-left&quot;: [
+    &quot;hyprland/workspaces&quot;,  /* Hyprland darbavirsmu modulis */
+    &quot;hyprland/special&quot;,  /* Hyprland speciālo darbavirsmu modulis */
+    &quot;hyprland/window&quot;  /* Hyprland modulis kas rāda aktīvo logu */
+],
+
+&quot;modules-center&quot;: [  /* Pavidu nekā nav */
+],
+
+&quot;modules-right&quot;: [
+    &quot;privacy&quot;,  /* Modulis kas rāda kad tiek izmantoti mikrofons vai kamera */
+    &quot;battery&quot;,  /* Modulis kas rāda akumulatora uzlādi */
+    &quot;network&quot;,  /* Modulis kas rāda tīkla savienojuma statusu */
+    &quot;wireplumber&quot;,  /* Modulis kas rāda skaļumu un dod to regulēt */
+    &quot;cpu&quot;,  /* Modulis kas rāda CPU utilizāciju procentos */
+    &quot;memory&quot;,  /* Modulis kas rāda RAM utilizāciju procentos */
+    &quot;temperature&quot;,  /* Modulis kas rāda CPU temperatūru */
+    &quot;keyboard-state&quot;,
+    &quot;hyprland/language&quot;,  /* Modulis kas rāda izvēlēto valodu */
+    &quot;clock&quot;  /* Modulis kas rāda laiku un datumu */
+],</code></pre>
+<h2 id="kursa-vērtējums">Kursa vērtējums:</h2>
+<p><strong>A</strong>. Cik daudz stāstīt par OS Windows?
+<strong><em>Vajadzēja mazāk</em></strong></p>
+<p><strong>B</strong>. Cik daudz stāstīt par OS Linux?
+<strong><em>Vajadzēja vairāk</em></strong></p>
+<p><strong>C</strong>. Cik daudz stāstīt par citām tēmām?
+<strong><em>Vajadzēja mazāk</em></strong></p>
+<p><strong>D</strong>. Cik daudz mājas darbu vajag semestra laikā?
+<strong><em>Pietiekami</em></strong></p>
+<p><strong>E</strong>. Ko vēl vajadzētu pastāstīt šinī kursā?
+<strong><em>Par GNU projektu Linux kontekstā</em></strong></p>
+<p><strong>F</strong>. Citi ieteikumi pasniedzējam: <strong><em>Īsti
+nav</em></strong></p>
